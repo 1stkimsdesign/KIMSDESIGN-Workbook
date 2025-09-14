@@ -1,11 +1,151 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🧠📘 디자인 문제집 (응용형)｜TheKimUniverse</title>
+<meta name="description" content="디자인 용어 대백과(50개)를 기반으로 한 응용형 객관식 문제집" />
+<style>
+  /* === 라이트 모드 고정 === */
+  :root{
+    --bg:#ffffff; --fg:#0b0b0c; --muted:#6b7280; --line:#e5e7eb; --card:#f8fafc;
+    --accent:#3b82f6; --accent2:#8b5cf6; --ok:#16a34a; --bad:#ef4444; --chip:#eef2ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,Apple SD Gothic Neo,Pretendard,Roboto,Helvetica,Arial}
+  a{color:inherit}
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.75);backdrop-filter:saturate(1.05) blur(8px);border-bottom:1px solid var(--line)}
+  .wrap{max-width:1100px;margin:0 auto;padding:20px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-weight:900;letter-spacing:.2px;display:flex;align-items:center;gap:12px}
+  .badge{font-size:12px;color:#334155;border:1px solid var(--line);padding:4px 8px;border-radius:999px;background:var(--chip)}
+  h2{margin:0 0 10px 0}
+  p{margin:8px 0}
+  .muted{color:var(--muted)}
+  .grid{display:grid;gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:16px}
+  @media (max-width: 920px){ .hero{grid-template-columns:1fr} }
+  .btn{padding:10px 14px;border:1px solid var(--line);background:linear-gradient(180deg,#ffffff,#f3f4f6);color:var(--fg);border-radius:12px;cursor:pointer}
+  .btn.primary{background:linear-gradient(180deg,#93c5fd,#60a5fa);color:#0b0b0c;font-weight:800;border-color:transparent}
+  .btn[disabled]{opacity:.5;pointer-events:none}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  select{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--fg)}
+  .qnum{font-size:13px;color:var(--muted)}
+  .prog{height:10px;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,var(--accent2),#22d3ee)}
+  .pill{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--chip);font-size:13px;color:#334155}
+  .stem{font-size:19px;line-height:1.65}
+  .opts{display:grid;gap:10px;margin-top:12px}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+  .opt input{margin-top:3px}
+  .tag{color:var(--muted);font-size:12px}
+  .score{font-size:34px;font-weight:900}
+  .chip{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--chip);font-size:13px}
+  .cards{display:grid;gap:12px}
+  .result-card{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+  .ico{width:32px;height:32px;border-radius:10px;display:grid;place-items:center}
+  .ico.ok{background:rgba(22,163,74,.15);color:#16a34a}
+  .ico.bad{background:rgba(239,68,68,.15);color:#ef4444}
+  .explain{margin-top:8px;padding:10px 12px;border:1px dashed #bae6fd;background:#f0f9ff;border-radius:12px;color:#075985;font-size:13px}
+  footer{margin:28px 0 8px;text-align:center;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap top">
+    <div class="brand">🧠📘 <span>디자인 문제집 (응용형)</span>
+      <span class="badge">조형 원리 · 색채 · 타이포그래피 · 무드 · 워크플로우 · 기타</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- 시작 화면 -->
+  <section id="screen-start" class="grid">
+    <div class="hero">
+      <div class="card">
+        <h2>소개</h2>
+        <p>**디자인 용어 대백과(50개)**에서만 출제되는 응용형 객관식 문제들이야.</p>
+        <ul class="muted" style="margin:8px 0 0 16px;line-height:1.7">
+          <li>카테고리: 조형 원리 · 색채 · 타이포그래피 · 무드 · 워크플로우 · 기타</li>
+          <li>객관식 4지선다, 마지막에 <b>일괄 채점</b></li>
+          <li>오답은 카드로 정리되어 <b>리뷰</b> 가능</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>설정</h2>
+        <div class="row">
+          <label>문항 수</label>
+          <select id="count">
+            <option value="10" selected>10문제</option>
+            <option value="20">20문제</option>
+            <option value="30">30문제</option>
+          </select>
+          <button class="btn primary" id="btn-start">시작하기 ▶</button>
+        </div>
+        <p class="muted" style="margin-top:8px">매 시작마다 문제·보기 순서가 무작위로 섞여.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 퀴즈 화면 -->
+  <section id="screen-quiz" class="grid" style="display:none">
+    <div class="card">
+      <div class="row" style="justify-content:space-between">
+        <div class="qnum" id="qnum">1 / 10</div>
+        <div class="pill"><span id="miniAnswers">응답 0</span><span class="tag" id="miniCat"></span></div>
+      </div>
+      <div class="prog"><div class="bar" id="bar"></div></div>
+    </div>
+
+    <div class="card">
+      <div class="stem" id="stem">문제가 들어갑니다</div>
+      <div class="tag" id="hint" style="margin-top:6px"></div>
+      <div class="opts" id="opts"></div>
+      <div class="row" style="margin-top:12px;justify-content:flex-end">
+        <button class="btn" id="btn-prev">◀ 이전</button>
+        <button class="btn primary" id="btn-next">다음 ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 결과 화면 -->
+  <section id="screen-result" class="grid" style="display:none">
+    <div class="card">
+      <h2>결과</h2>
+      <p>총 <b id="totalQ">10</b>문항 중 <b id="rightQ">0</b>개 정답</p>
+      <div class="score" id="scorePct">0%</div>
+      <div class="row" style="margin-top:10px">
+        <span class="chip">정답률 90%+ 우수 · 70%+ 양호 · 70% 미만 복습 권장</span>
+        <button class="btn" id="btn-restart">다시 시작</button>
+      </div>
+    </div>
+
+    <div class="card" id="wrongBox" style="display:none">
+      <h3 style="margin:0 0 8px 0">오답 카드</h3>
+      <div class="cards" id="wrongCards"></div>
+    </div>
+
+    <div class="card" id="allBox">
+      <h3 style="margin:0 0 8px 0">전체 문항 리뷰</h3>
+      <div class="cards" id="allCards"></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  ※ 본 페이지는 김씨네디자인실의 자체 제작 콘텐츠로, 무단 복제 및 배포를 금합니다.
+</footer>
+
 <script>
 /* ============================== 
    데이터: 용어 대백과 50개만 활용
    카테고리: 조형 원리 / 색채 / 타이포그래피 / 무드 / 워크플로우 / 기타
    각 문항: {id, cat, stem, options[4], answer(0~3), explain?, hint?}
-   변경 사항:
-   - wf-responsive, wf-hero 제거
-   - ot-keyvisual/ot-inforg에서 '법적 상표 등록' 언급 제거/대체
+   변경 반영:
+   - 반응형/브레이크포인트/히어로/법적 상표 등록 관련 전부 제거·대체
 ================================= */
 const Q = [
   /* 조형 원리 */
@@ -113,7 +253,6 @@ const Q = [
   {id:"wf-vector",cat:"워크플로우",stem:"아이콘/로고 제작에 적합한 그래픽은?",
    options:["래스터: 확대해도 선명","벡터: 해상도 독립, 스케일에 유리","둘 다 동일","항상 JPG만"],answer:1,
    explain:"스케일 변동이 심해도 품질 유지가 쉬운 벡터가 적합."},
-  /* NEW: 반응형/히어로 섹션 대체 문항 */
   {id:"wf-grid-collab",cat:"워크플로우",stem:"팀 협업에서 ‘모듈러 그리드’를 쓰는 가장 실무적인 이유는?",
    options:["파일 용량을 줄이기 위해","반복 제작의 일관성과 속도를 높이기 위해","인쇄 잉크를 절감하기 위해","색 공간을 자동 변환하기 위해"],answer:1,
    explain:"그리드를 기준으로 컴포넌트·템플릿을 재사용해 속도와 일관성이 크게 오른다."},
@@ -134,11 +273,9 @@ const Q = [
   {id:"ot-cibi",cat:"기타",stem:"‘CI/BI’ 가이드에서 가장 우선 관리할 항목은?",
    options:["로고 오용 사례, 세이프 존, 최소 크기, 키 컬러","폰트 힌팅","개발 이슈 템플릿","모니터 해상도"],answer:0,
    explain:"브랜드 자산 보호의 핵심은 로고·컬러·세이프존·최소크기·오용 규정."},
-  /* UPDATED: 키 비주얼 – 법적 상표 등록 언급 제거 */
   {id:"ot-keyvisual",cat:"기타",stem:"‘키 비주얼(Key Visual)’의 역할은?",
    options:["캠페인의 중심 이미지를 제공","서체 파일 포맷을 규정","색 공간(RGB/CMYK) 변환을 수행","문단 스타일 가이드만 제공"],answer:0,
    explain:"키 비주얼은 캠페인/브랜드 메시지를 응축한 대표 시각 요소다. 포맷·색공간·문단 규정은 별도 가이드의 영역."},
-  /* UPDATED: 인포그래픽 – 법적 상표 등록 언급 제거/대체 */
   {id:"ot-inforg",cat:"기타",stem:"‘인포그래픽’이 상대적으로 부적합한 목적은?",
    options:["데이터·정보의 시각 구조화","핵심 지표의 빠른 이해","복잡한 법률 문서의 정식 효력 대체","요약된 메시지 전달"],answer:2,
    explain:"인포그래픽은 이해·요약에 강점이지만, 법률 효력을 대체하진 못한다."},
@@ -153,14 +290,18 @@ const Q = [
    explain:"로고타입=워드마크(문자 기반 로고)."}
 ];
 
-/* ===== 유틸/상태/동작(그대로) ===== */
+/* ===== 유틸 ===== */
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 const shuffle = arr => { const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const sample = (arr,n)=>shuffle(arr).slice(0,n);
+
+/* ===== 상태 ===== */
 let quiz=[], idx=0, picks=[], answers=[];
+
+/* ===== 시작 ===== */
 function startQuiz(){
-  const n = parseInt(document.getElementById('count').value,10);
+  const n = parseInt($('#count').value,10);
   const chosen = sample(Q, Math.min(n, Q.length));
   quiz = chosen.map(q=>{
     const options = shuffle(q.options);
@@ -168,46 +309,60 @@ function startQuiz(){
     return {...q, options, answer};
   });
   idx=0; picks = Array(quiz.length).fill(null); answers = quiz.map(q=>q.answer);
-  document.getElementById('screen-start').style.display='none';
-  document.getElementById('screen-result').style.display='none';
-  document.getElementById('screen-quiz').style.display='';
+  $('#screen-start').style.display='none';
+  $('#screen-result').style.display='none';
+  $('#screen-quiz').style.display='';
   renderQ();
 }
+
+/* ===== 렌더 ===== */
 function renderQ(){
   const q = quiz[idx];
-  document.getElementById('qnum').textContent = `${idx+1} / ${quiz.length}`;
-  document.getElementById('miniCat').textContent = `#${q.cat}`;
-  document.getElementById('stem').textContent = q.stem;
-  document.getElementById('hint').textContent = q.hint ? `힌트: ${q.hint}` : '';
-  document.getElementById('bar').style.width = `${(idx/quiz.length)*100}%`;
-  document.getElementById('miniAnswers').textContent = `응답 ${picks.filter(v=>v!==null).length}`;
-  const opts = document.getElementById('opts'); opts.innerHTML='';
+  $('#qnum').textContent = `${idx+1} / ${quiz.length}`;
+  $('#miniCat').textContent = `#${q.cat}`;
+  $('#stem').textContent = q.stem;
+  $('#hint').textContent = q.hint ? `힌트: ${q.hint}` : '';
+  $('#bar').style.width = `${(idx/quiz.length)*100}%`;
+  $('#miniAnswers').textContent = `응답 ${picks.filter(v=>v!==null).length}`;
+
+  const opts = $('#opts'); opts.innerHTML='';
   q.options.forEach((label,i)=>{
     const wrap=document.createElement('label'); wrap.className='opt';
     const input=document.createElement('input'); input.type='radio'; input.name='opt';
     input.checked = (picks[idx]===i);
-    input.onchange=()=>{ picks[idx]=i; document.getElementById('miniAnswers').textContent = `응답 ${picks.filter(v=>v!==null).length}`; };
+    input.onchange=()=>{ picks[idx]=i; $('#miniAnswers').textContent = `응답 ${picks.filter(v=>v!==null).length}`; };
     const span=document.createElement('div'); span.innerHTML = `<b>${label}</b>`;
     wrap.appendChild(input); wrap.appendChild(span); opts.appendChild(wrap);
   });
-  document.getElementById('btn-prev').disabled=(idx===0);
-  document.getElementById('btn-next').textContent=(idx===quiz.length-1)?'채점 ▶':'다음 ▶';
+
+  $('#btn-prev').disabled=(idx===0);
+  $('#btn-next').textContent=(idx===quiz.length-1)?'채점 ▶':'다음 ▶';
 }
-document.getElementById('btn-prev').onclick=()=>{ if(idx>0){ idx--; renderQ(); } };
-document.getElementById('btn-next').onclick=()=>{ if(idx<quiz.length-1){ idx++; renderQ(); } else finish(); };
-document.getElementById('btn-start').onclick=startQuiz;
+
+/* ===== 네비게이션 ===== */
+$('#btn-prev').onclick=()=>{ if(idx>0){ idx--; renderQ(); } };
+$('#btn-next').onclick=()=>{ if(idx<quiz.length-1){ idx++; renderQ(); } else finish(); };
+$('#btn-start').onclick=startQuiz;
+
+/* ===== 채점/결과 ===== */
 function finish(){
-  document.getElementById('screen-quiz').style.display='none';
-  document.getElementById('screen-result').style.display='';
+  $('#screen-quiz').style.display='none';
+  $('#screen-result').style.display='';
+
   const total = quiz.length;
   let right = 0;
   const wrongIdxs = [];
   picks.forEach((p,i)=>{ if(p===answers[i]) right++; else wrongIdxs.push(i); });
-  document.getElementById('rightQ').textContent = right;
-  document.getElementById('totalQ').textContent = total;
-  document.getElementById('scorePct').textContent = `${Math.round((right/total)*100)}%`;
-  const wrongBox = document.getElementById('wrongBox'), wrongCards = document.getElementById('wrongCards');
-  wrongCards.innerHTML=''; wrongBox.style.display = wrongIdxs.length ? '' : 'none';
+
+  $('#rightQ').textContent = right;
+  $('#totalQ').textContent = total;
+  $('#scorePct').textContent = `${Math.round((right/total)*100)}%`;
+
+  // 오답 카드
+  const wrongBox = $('#wrongBox'), wrongCards = $('#wrongCards');
+  wrongCards.innerHTML='';
+  wrongBox.style.display = wrongIdxs.length ? '' : 'none';
+
   wrongIdxs.forEach(i=>{
     const q = quiz[i]; const my = picks[i]===null ? '미응답' : q.options[picks[i]];
     const card = document.createElement('div'); card.className='result-card';
@@ -222,7 +377,9 @@ function finish(){
       </div>`;
     wrongCards.appendChild(card);
   });
-  const allCards = document.getElementById('allCards'); allCards.innerHTML='';
+
+  // 전체 리뷰
+  const allCards = $('#allCards'); allCards.innerHTML='';
   quiz.forEach((q,i)=>{
     const ok = (picks[i]===answers[i]);
     const my = picks[i]===null ? '미응답' : q.options[picks[i]];
@@ -239,8 +396,12 @@ function finish(){
     allCards.appendChild(card);
   });
 }
-document.getElementById('btn-restart').onclick=()=>{
-  document.getElementById('screen-result').style.display='none';
-  document.getElementById('screen-start').style.display='';
+
+/* ===== 다시 시작 ===== */
+$('#btn-restart').onclick=()=>{
+  $('#screen-result').style.display='none';
+  $('#screen-start').style.display='';
 };
 </script>
+</body>
+</html>
